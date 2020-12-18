@@ -3,7 +3,7 @@
  * La clase representa a una lista de 
  * números enteros
  * 
- * @author - 
+ * @author - Andrés Guallar Chamorro
  * 
  */
 import java.util.Arrays;
