@@ -35,6 +35,7 @@ public class ListaNumeros
     public boolean addElemento(int numero) {
         if(!estaCompleta()){
             lista[pos] = numero;
+            pos++;
             return true;
         }
 
@@ -81,14 +82,15 @@ public class ListaNumeros
      * Si la lista está vacía devuelve ""
      */
     public String toString() {
-        String str = "";
+        String str1 = "";
+        String str2 = "";
         if(!estaVacia()){
-            for(int i = 0; i <= pos; i++){
-                str.format("%8d", lista[i]);
-                System.out.println();
-                str.format("%8d", i);
+            for(int i = 0; i < pos; i++){
+                str1 += str1.format("%8d", lista[i]);
+                
+                str2 += str2.format("%8d", i);
             }
-            return str;
+            return str1 + "\n" + str2;
         }
         return "";
     }
@@ -108,14 +110,17 @@ public class ListaNumeros
      */
     public int[] buscarPosicionesDe(int numero) {
         int[] posiciones = new int[pos];
-        int total = 0;
-        for(int i = 0; i <= pos; i++){
+        int longitud = 0;
+        int posicion = 0;
+        for(int i = 0; i < pos; i++){
             if(numero == lista[i]){
-                posiciones[i] = i;
-                total++;
+                posiciones[posicion] = i;
+                posicion++;
+                longitud ++;
             }
+           
         }
-        int[] copyPosiciones = Arrays.copyOf(posiciones, total);
+        int[] copyPosiciones = Arrays.copyOf(posiciones, longitud);
         return copyPosiciones;
     }
 
@@ -181,10 +186,12 @@ public class ListaNumeros
         }
         System.out.println(lista.toString());
 
-        System.out.println("--- buscarPosiciones() -------");
+        System.out.println("------- buscarPosiciones() -------");
         int numero = 21;
         System.out.println(lista.toString());
+        int[] aux = lista.buscarPosicionesDe(numero);
         System.out.println("\t" + numero + " aparece en posiciones ");
+        System.out.print(aux.toString());
         // seguir completando
 
     }
