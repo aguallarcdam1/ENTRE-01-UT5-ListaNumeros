@@ -87,7 +87,7 @@ public class ListaNumeros
         if(!estaVacia()){
             for(int i = 0; i < pos; i++){
                 str1 += str1.format("%8d", lista[i]);
-                
+
                 str2 += str2.format("%8d", i);
             }
             return str1 + "\n" + str2;
@@ -118,7 +118,7 @@ public class ListaNumeros
                 posicion++;
                 longitud ++;
             }
-           
+
         }
         int[] copyPosiciones = Arrays.copyOf(posiciones, longitud);
         return copyPosiciones;
@@ -136,16 +136,39 @@ public class ListaNumeros
      * 
      */
     public int buscarBinario(int numero) {
+        int[] aux = Arrays.copyOf(lista, lista.length);
+        Arrays.sort(aux);
+        boolean encontrado = false;
+        int izquierda = 0;
+        int derecha = aux.length - 1;
+        int mitad;
+        while  (izquierda<= derecha)
+        {
+            mitad = (izquierda + derecha) / 2;
+            if (aux[mitad] == numero)
+            {
+                encontrado = true;
+                return mitad;
+            }
+            else if (aux[mitad] > numero)
+            {
+                derecha = mitad -  1;
+            }
+            else
+            {
+                izquierda = mitad + 1;
+            }
+        }
 
-        return 0;
-
+        return -1;
     }
 
     /**
      * borra el primer elemento de la lista
      */
     public void borrarPrimero() {
-
+        int[] copia = new int[lista.length];
+        System.arraycopy(lista, 1, copia, 0, lista.length);
     }
 
     /**
@@ -158,7 +181,7 @@ public class ListaNumeros
      *  
      */
     public void invertir(int n) {
-
+        
     }
 
     /**
@@ -192,6 +215,7 @@ public class ListaNumeros
         int[] aux = lista.buscarPosicionesDe(numero);
         System.out.println("\t" + numero + " aparece en posiciones ");
         System.out.print(aux.toString());
+        System.out.println("------- buscarBinario() -------");
         // seguir completando
 
     }
