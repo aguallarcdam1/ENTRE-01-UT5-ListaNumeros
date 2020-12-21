@@ -141,7 +141,7 @@ public class ListaNumeros
         boolean encontrado = false;
         int izquierda = 0;
         int derecha = aux.length - 1;
-        int mitad;
+        int mitad = 0;
         while  (izquierda<= derecha)
         {
             mitad = (izquierda + derecha) / 2;
@@ -181,7 +181,23 @@ public class ListaNumeros
      *  
      */
     public void invertir(int n) {
-        
+        int elementosRestantes = pos;
+        int derecha = n;
+        if(n != 1){
+            while(elementosRestantes / pos == 0){
+
+                for (int izquierda = 0; izquierda < (n / 2); izquierda += n){
+                    int finalGrupo = derecha;
+                    int aux = lista[finalGrupo];
+                    lista[finalGrupo] = lista[izquierda];
+                    lista[izquierda] = aux;
+                    finalGrupo --;
+                }
+
+                derecha *= 2;
+                elementosRestantes -= n;
+            }
+        }
     }
 
     /**
@@ -216,7 +232,12 @@ public class ListaNumeros
         System.out.println("\t" + numero + " aparece en posiciones ");
         System.out.print(aux.toString());
         System.out.println("------- buscarBinario() -------");
-        // seguir completando
+        System.out.println("------- invertir -------");
+        int a = 3;
+        System.out.println(lista.toString());
+        lista.invertir(a);
+        System.out.println("------- invertido -------");
+        System.out.println(lista.toString());
 
     }
 }
